@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import joblib
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -59,10 +58,12 @@ def load_model():
     df_m = df[core_features + ['match_outcome']].copy()
 
     for col in df_m.columns:
-        if df_m[col].dtype == 'object':
+        if df_m[col].dtype == 'object' or str(df_m[col].dtype) in ['string', 'StringDtype']:
             df_m[col] = df_m[col].fillna(df_m[col].mode()[0])
-        else:
+        elif pd.api.types.is_numeric_dtype(df_m[col]):
             df_m[col] = df_m[col].fillna(df_m[col].median())
+        else:
+            df_m[col] = df_m[col].fillna(df_m[col].mode()[0])
 
     orientation_stats = df_m.groupby('sexual_orientation').agg({
         'bio_length'        : 'mean',
@@ -88,8 +89,27 @@ def load_model():
     X = df_m.drop(columns=['is_serious', 'match_outcome'])
     y = df_m['is_serious']
 
-    preprocessor = joblib.load('preprocessor.pkl')
-    X_proc       = preprocessor.transform(X)
+    from sklearn.preprocessing import StandardScaler, OneHotEncoder
+    from sklearn.compose       import ColumnTransformer
+    from sklearn.impute        import SimpleImputer
+    from sklearn.pipeline      import Pipeline
+
+    numeric_features     = X.select_dtypes(include=[np.number]).columns.tolist()
+    categorical_features = ['sexual_orientation']
+
+    numeric_transformer = Pipeline(steps=[
+        ('imputer', SimpleImputer(strategy='mean')),
+        ('scaler',  StandardScaler())
+    ])
+    categorical_transformer = Pipeline(steps=[
+        ('imputer', SimpleImputer(strategy='most_frequent')),
+        ('onehot',  OneHotEncoder(handle_unknown='ignore', sparse_output=False))
+    ])
+    preprocessor = ColumnTransformer(transformers=[
+        ('num', numeric_transformer, numeric_features),
+        ('cat', categorical_transformer, categorical_features)
+    ])
+    X_proc = preprocessor.fit_transform(X)
 
     X_train, X_test, y_train, y_test = train_test_split(
         X_proc, y, test_size=0.2, random_state=42)
