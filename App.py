@@ -81,7 +81,7 @@ def load_model():
         if (s['emoji_usage_rate'] - 0.15) <= row['emoji_usage_rate'] <= (s['emoji_usage_rate'] + 0.15): score += 1
         if row['app_usage_time_min'] > 0 and (row['message_sent_count'] / row['app_usage_time_min']) > 0.5: score += 1
         if row['swipe_right_ratio'] > 0 and (row['mutual_matches'] / row['swipe_right_ratio']) > 5: score += 1
-        if row['match_outcome'] in ['No Action', 'Blocked']: score -= 1
+        if row['match_outcome'] in ['Relationship Formed', 'No Action', 'Blocked']: score -= 1
         return 1 if score >= 4 else 0
 
     df_m['is_serious'] = df_m.apply(determine_seriousness, axis=1)
@@ -233,7 +233,7 @@ if page == "🏠 Overview":
 ✅ Emoji usage within ±0.15 of their group average  
 ✅ Message density > 0.5 messages per minute  
 ✅ Match ROI > 5 (selective swiping that leads to real matches)  
-⛔ Penalty if outcome is Blocked or No Action
+⛔ Penalty if outcome is Relationship Formed, Blocked or No Action
     """)
 
     st.markdown("<br>", unsafe_allow_html=True)
@@ -432,7 +432,7 @@ elif page == "📊 Model Comparison":
     st.info("""
 **Accuracy** tells you how many predictions were correct overall.
 It can be misleading when classes are imbalanced — a model that predicts
-everyone as "casual" still gets ~62% accuracy.
+everyone as "casual" still gets ~67% accuracy.
 
 **F1-Score** balances precision (how many predicted serious are actually serious)
 and recall (how many actual serious users were found).
@@ -562,8 +562,7 @@ elif page == "ℹ️ About":
 ---
 
 ### Problem Statement
-*Can we predict whether a user on a dating app is a serious dater,
-and does this prediction differ across LGBTQ+ sexual orientation groups?*
+*Among dating app users within each LGBTQ+ subgroup, what proportion exhibits behavioural patterns that indicate a serious relationship intent?*
 
 ---
 
