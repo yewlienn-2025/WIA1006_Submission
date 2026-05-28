@@ -597,9 +597,3 @@ Dating App Behavior Dataset — 50,000 synthetic records · 19 features
                     'likes_received', 'profile_pics_count', 'sexual_orientation']
         for f in features:
             st.markdown(f"- `{f}`")
-
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown("### Group Members")
-        members = ['Yew Lienn', 'Lim Xuan Ning', 'Mujahid', 'Lee Wuey Yong', 'Waseem']
-        for m in members:
-            st.markdown(f"- {m}")
