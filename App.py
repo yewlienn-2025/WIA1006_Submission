@@ -10,7 +10,7 @@ from sklearn.ensemble        import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 
 st.set_page_config(
-    page_title="Tying the Data Knot",
+    page_title="TrueLove AI",
     page_icon="💘",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -137,8 +137,8 @@ leaderboard_data = pd.DataFrame([
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("## 💘 Tying the Data Knot")
-    st.markdown("*Love, Life & Likes*")
+    st.markdown("## 💘 TrueLove AI")
+    st.markdown("*Serious Relationship Predictor*")
     st.divider()
     page = st.radio("Navigate", [
         "🏠 Overview",
@@ -156,9 +156,9 @@ with st.sidebar:
 # PAGE 1 — OVERVIEW
 # ══════════════════════════════════════════════════════════════════════════════
 if page == "🏠 Overview":
-    st.markdown("<h1 class='hero-title'>Tying the Data Knot 💘</h1>",
+    st.markdown("<h1 class='hero-title'>TrueLove AI 💘</h1>",
                 unsafe_allow_html=True)
-    st.markdown("<p class='hero-sub'>Predicting serious relationship intent across LGBTQ+ communities</p>",
+    st.markdown("<p class='hero-sub'>Predicting serious relationship intent across LGBTQ+ communities using AI</p>",
                 unsafe_allow_html=True)
     st.markdown("---")
 
@@ -548,7 +548,7 @@ Each user is compared against their own community — not a global standard.
 # PAGE 5 — ABOUT
 # ══════════════════════════════════════════════════════════════════════════════
 elif page == "ℹ️ About":
-    st.markdown("<h1 class='hero-title'>About This Project ℹ️</h1>",
+    st.markdown("<h1 class='hero-title'>About TrueLove AI ℹ️</h1>",
                 unsafe_allow_html=True)
     st.markdown("---")
 
@@ -556,8 +556,8 @@ elif page == "ℹ️ About":
 
     with col1:
         st.markdown("""
-### WIA1006/WID3006 Machine Learning
-**Group 15**
+### TrueLove AI
+WIA1006/WID3006 Machine Learning · **Group 15**
 
 ---
 
@@ -574,6 +574,7 @@ An engineered label using the **Goldilocks Rule** (score ≥ 4 out of 6 criteria
 - Emoji usage within ±0.15 of group average
 - Message density > 0.5 msgs/min
 - Match ROI > 5
+- Penalty: Relationship Formed, Blocked or No Action
 
 ---
 
@@ -596,3 +597,9 @@ Dating App Behavior Dataset — 50,000 synthetic records · 19 features
                     'likes_received', 'profile_pics_count', 'sexual_orientation']
         for f in features:
             st.markdown(f"- `{f}`")
+
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("### Group Members")
+        members = ['Yew Lienn', 'Lim Xuan Ning', 'Mujahid', 'Lee Wuey Yong', 'Waseem']
+        for m in members:
+            st.markdown(f"- {m}")
