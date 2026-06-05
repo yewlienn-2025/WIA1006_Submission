@@ -148,7 +148,7 @@ with st.sidebar:
         "ℹ️ About"
     ])
     st.divider()
-    st.markdown("<small>Group 15 · WIA1006/WID3006</small>",
+    st.markdown("<small>Group 8 · WIA1006/WID3006</small>",
                 unsafe_allow_html=True)
 
 
@@ -557,7 +557,7 @@ elif page == "ℹ️ About":
     with col1:
         st.markdown("""
 ### TrueLove AI
-WIA1006/WID3006 Machine Learning · **Group 15**
+WIA1006/WID3006 Machine Learning · **Group 8**
 
 ---
 
