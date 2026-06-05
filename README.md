@@ -6,7 +6,7 @@
 
 ## 🌐 Live Dashboard
 
-**👉 [ https://wia1006-group15-dashboard.streamlit.app/]
+**👉 [ https://wia1006-group8-dashboard.streamlit.app/ ]
 
 > Built with Streamlit and deployed on Streamlit Cloud.  
 > No installation needed — just open the link!
