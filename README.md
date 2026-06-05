@@ -13,6 +13,12 @@
 
 ---
 
+> ### 🎬 Video Presentation
+> Curious to see how it works? Watch our project walkthrough and demonstration here:
+> 🔗 **[Watch on Google Drive](https://drive.google.com/drive/folders/1hkwp-kC_6W-YDdAz983EyLlpFbQpU65r)**
+
+---
+
 ## 📌 Project Overview
 
 **TrueLove AI** predicts whether a dating app user is a **serious dater** based on their behavioural and profile signals, and analyses prediction results across **LGBTQ+ sexual orientation groups**.
